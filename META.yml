@@ -1,5 +1,5 @@
 ---
-abstract: 'Tags helpers for HTML messages.'
+abstract: 'Tags helper for HTML messages.'
 author:
   - 'Michal Josef Spacek <skim@cpan.org>'
 build_requires:
