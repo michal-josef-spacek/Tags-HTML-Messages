@@ -1,5 +1,5 @@
 NAME
-    Tags::HTML::Messages - Tags helper for HTML page begin.
+    Tags::HTML::Messages - Tags helper for HTML messages.
 
 SYNOPSIS
      use Tags::HTML::Messages;
