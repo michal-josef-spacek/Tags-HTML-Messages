@@ -20,8 +20,7 @@ recursive_author_tests('xt');
 requires 'Class::Utils' => 0.02;
 requires 'Error::Pure' => 0.07;
 requires 'perl' => '5.8.0';
-resources 'bugtracker' => 'https://rt.cpan.org/Public/Dist/Display.html'.
-	'?Name=Tags-HTML-Messages';
+resources 'bugtracker' => 'https://github.com/michal-josef-spacek/Tags-HTML-Messages/issues';
 resources 'homepage' => 'https://github.com/michal-josef-spacek/Tags-HTML-Messages';
 resources 'repository' => 'git://github.com/michal-josef-spacek/Tags-HTML-Messages';
 test_requires 'CSS::Struct::Output::Raw' => 0;
