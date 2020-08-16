@@ -1,4 +1,4 @@
-0.02
+0.02 2020-08-16T10:59:22+02:00
  - Add tests for constructor.
  - Change bugtracker to Github.
  - Fix module description.
