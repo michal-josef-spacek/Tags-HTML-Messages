@@ -15,7 +15,7 @@ sub new {
 	# Create object.
 	my $self = bless {}, $class;
 
-	# 'CSS::Struct' object.
+	# 'CSS::Struct::Output' object.
 	$self->{'css'} = undef;
 
 	# 'Tags' object.
@@ -24,14 +24,14 @@ sub new {
 	# Process params.
 	set_params($self, @params);
 
+	# Check to 'CSS::Struct::Output' object.
+	if ($self->{'css'} && ! $self->{'css'}->isa('CSS::Struct::Output')) {
+		err "Parameter 'css' must be a 'CSS::Struct::Output::*' class.";
+	}
+
 	# Check to 'Tags' object.
 	if (! $self->{'tags'} || ! $self->{'tags'}->isa('Tags::Output')) {
 		err "Parameter 'tags' must be a 'Tags::Output::*' class.";
-	}
-
-	# Check to 'CSS::Struct' object.
-	if ($self->{'css'} && ! $self->{'css'}->isa('CSS::Struct::Output')) {
-		err "Parameter 'css' must be a 'CSS::Struct::Output::*' class.";
 	}
 
 	# Object.
@@ -144,10 +144,10 @@ Returns undef.
 =head1 ERRORS
 
  new():
-         Parameter 'css' must be a 'CSS::Struct::Output::*' class.
-         Parameter 'tags' must be a 'Tags::Output::*' class.
          From Class::Utils::set_params():
                  Unknown parameter '%s'.
+         Parameter 'css' must be a 'CSS::Struct::Output::*' class.
+         Parameter 'tags' must be a 'Tags::Output::*' class.
 
 =head1 EXAMPLE1
 
