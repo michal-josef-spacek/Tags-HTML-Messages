@@ -1,4 +1,8 @@
 0.03
+ [API change]
+ - Rewrite to Tags::HTML helper. This is API change because 'tags' and
+   'css' parameters could be undef now.
+ [Common]
  - Update copyright years.
  - Update Module::Install to 1.21 version.
 

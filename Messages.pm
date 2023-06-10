@@ -1,5 +1,6 @@
 package Tags::HTML::Messages;
 
+use base qw(Tags::HTML);
 use strict;
 use warnings;
 
@@ -13,33 +14,14 @@ sub new {
 	my ($class, @params) = @_;
 
 	# Create object.
-	my $self = bless {}, $class;
-
-	# 'CSS::Struct::Output' object.
-	$self->{'css'} = undef;
-
-	# 'Tags' object.
-	$self->{'tags'} = undef;
-
-	# Process params.
-	set_params($self, @params);
-
-	# Check to 'CSS::Struct::Output' object.
-	if ($self->{'css'} && ! $self->{'css'}->isa('CSS::Struct::Output')) {
-		err "Parameter 'css' must be a 'CSS::Struct::Output::*' class.";
-	}
-
-	# Check to 'Tags' object.
-	if (! $self->{'tags'} || ! $self->{'tags'}->isa('Tags::Output')) {
-		err "Parameter 'tags' must be a 'Tags::Output::*' class.";
-	}
+	my $self = $class->SUPER::new(@params);
 
 	# Object.
 	return $self;
 }
 
 # Process 'Tags'.
-sub process {
+sub _process {
 	my ($self, $message_ar, $id) = @_;
 
 	my $num = 0;
@@ -65,7 +47,7 @@ sub process {
 }
 
 # Process 'CSS::Struct'.
-sub process_css {
+sub _process_css {
 	my ($self, $id, $color) = @_;
 
 	$self->{'css'}->put(
@@ -111,15 +93,11 @@ Constructor.
 
 'CSS::Struct::Output' object for L<process_css> processing.
 
-It's required.
-
 Default value is undef.
 
 =item * C<tags>
 
 'Tags::Output' object.
-
-It's required.
 
 Default value is undef.
 
@@ -235,7 +213,8 @@ Returns undef.
 =head1 DEPENDENCIES
 
 L<Class::Utils>,
-L<Error::Pure>.
+L<Error::Pure>,
+L<Tags::HTML>.
 
 =head1 REPOSITORY
 

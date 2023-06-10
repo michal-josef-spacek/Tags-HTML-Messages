@@ -18,15 +18,11 @@ METHODS
 
             'CSS::Struct::Output' object for process_css processing.
 
-            It's required.
-
             Default value is undef.
 
     *       "tags"
 
             'Tags::Output' object.
-
-            It's required.
 
             Default value is undef.
 
@@ -134,7 +130,7 @@ EXAMPLE1
      # </html>
 
 DEPENDENCIES
-    Class::Utils, Error::Pure.
+    Class::Utils, Error::Pure, Tags::HTML.
 
 REPOSITORY
     <https://github.com/michal-josef-spacek/Tags-HTML-Messages>
