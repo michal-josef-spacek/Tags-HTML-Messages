@@ -4,6 +4,7 @@
    'css' parameters could be undef now.
  [Common]
  - Fix/update MANIFEST file.
+ - Fix message type, must be CSS class not id.
  - Rewrite example to better filename.
  - Update copyright years.
  - Update Module::Install to 1.21 version.

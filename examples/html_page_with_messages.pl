@@ -57,25 +57,25 @@ print $tags->flush;
 #       Page title
 #     </title>
 #     <style type="text/css">
-# #error {
+# .error {
 # 	color: red;
 # }
-# #ok {
+# .ok {
 # 	color: green;
 # }
 # </style>
 #   </head>
 #   <body>
-#     <span id="error">
+#     <span class="error">
 #       Error #1
 #     </span>
-#     <span id="error">
+#     <span class="error">
 #       Error #2
 #     </span>
-#     <span id="ok">
+#     <span class="ok">
 #       Ok #1
 #     </span>
-#     <span id="ok">
+#     <span class="ok">
 #       Ok #2
 #     </span>
 #   </body>

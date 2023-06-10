@@ -35,7 +35,7 @@ sub _process {
 			}
 			$self->{'tags'}->put(
 				['b', 'span'],
-				['a', 'id', $id],
+				['a', 'class', $id],
 				['d', $message],
 				['e', 'span'],
 			);
@@ -51,7 +51,7 @@ sub _process_css {
 	my ($self, $id, $color) = @_;
 
 	$self->{'css'}->put(
-		['s', '#'.$id],
+		['s', '.'.$id],
 		['d', 'color', $color],
 		['e'],
 	);
@@ -188,25 +188,25 @@ Returns undef.
  #       Page title
  #     </title>
  #     <style type="text/css">
- # #error {
+ # .error {
  # 	color: red;
  # }
- # #ok {
+ # .ok {
  # 	color: green;
  # }
  # </style>
  #   </head>
  #   <body>
- #     <span id="error">
+ #     <span class="error">
  #       Error #1
  #     </span>
- #     <span id="error">
+ #     <span class="error">
  #       Error #2
  #     </span>
- #     <span id="ok">
+ #     <span class="ok">
  #       Ok #1
  #     </span>
- #     <span id="ok">
+ #     <span class="ok">
  #       Ok #2
  #     </span>
  #   </body>
