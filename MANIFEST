@@ -20,5 +20,6 @@ README
 SIGNATURE
 t/Tags-HTML-Messages/01-use.t
 t/Tags-HTML-Messages/02-version.t
+t/Tags-HTML-Messages/03-new.t
 xt/Tags-HTML-Messages/01-pod_coverage.t
 xt/Tags-HTML-Messages/02-pod.t

@@ -3,6 +3,7 @@
  - Rewrite to Tags::HTML helper. This is API change because 'tags' and
    'css' parameters could be undef now.
  [Common]
+ - Fix/update MANIFEST file.
  - Rewrite example to better filename.
  - Update copyright years.
  - Update Module::Install to 1.21 version.
