@@ -6,6 +6,7 @@ use warnings;
 
 use Class::Utils qw(set_params);
 use Error::Pure qw(err);
+use Scalar::Util qw(blessed);
 
 our $VERSION = 0.03;
 
@@ -20,9 +21,24 @@ sub new {
 	return $self;
 }
 
+sub _check_messages {
+	my ($self, $message_ar) = @_;
+
+	foreach my $message (@{$message_ar}) {
+		if (! blessed($message) && ! $message->isa('Data::Message::Simple')) {
+
+			err 'Bad message data object.';
+		}
+	}
+
+	return;
+}
+
 # Process 'Tags'.
 sub _process {
-	my ($self, $message_ar, $id) = @_;
+	my ($self, $message_ar) = @_;
+
+	$self->_check_messages($message_ar);
 
 	my $num = 0;
 	if (@{$message_ar}) {
@@ -35,8 +51,8 @@ sub _process {
 			}
 			$self->{'tags'}->put(
 				['b', 'span'],
-				['a', 'class', $id],
-				['d', $message],
+				['a', 'class', $message->type],
+				['d', $message->text],
 				['e', 'span'],
 			);
 		}
@@ -48,10 +64,10 @@ sub _process {
 
 # Process 'CSS::Struct'.
 sub _process_css {
-	my ($self, $id, $color) = @_;
+	my ($self, $type, $color) = @_;
 
 	$self->{'css'}->put(
-		['s', '.'.$id],
+		['s', '.'.$type],
 		['d', 'color', $color],
 		['e'],
 	);
@@ -76,8 +92,8 @@ Tags::HTML::Messages - Tags helper for HTML messages.
  use Tags::HTML::Messages;
 
  my $obj = Tags::HTML::Messages->new(%params);
- $obj->process($message_ar, $id);
- $obj->process_css($id, $color);
+ $obj->process($message_ar);
+ $obj->process_css($type, $color);
 
 =head1 METHODS
 
@@ -105,17 +121,23 @@ Default value is undef.
 
 =head2 C<process>
 
- $obj->process($message_ar, $id);
+ $obj->process($message_ar);
 
 Process Tags structure for output.
+
+Reference to array with message objects C<$message_ar> must be a instance of
+L<Data::Message::Simple> object.
 
 Returns undef.
 
 =head2 C<process_css>
 
- $obj->process_css($id, $color);
+ $obj->process_css($type, $color);
 
 Process CSS::Struct structure for output.
+
+Variable C<$type> is string which define message type. Possible values are info
+and error now. Types are defined in L<Data::Message::Simple>.
 
 Returns undef.
 
@@ -135,6 +157,7 @@ Returns undef.
  use warnings;
 
  use CSS::Struct::Output::Indent;
+ use Data::Message::Simple;
  use Tags::HTML::Page::Begin;
  use Tags::HTML::Page::End;
  use Tags::HTML::Messages;
@@ -148,6 +171,10 @@ Returns undef.
  my $css = CSS::Struct::Output::Indent->new;
  my $begin = Tags::HTML::Page::Begin->new(
          'css' => $css,
+         'lang' => {
+                 'title' => 'Tags::HTML::Messages example',
+         },
+         'generator' => 'Tags::HTML::Messages',
          'tags' => $tags,
  );
  my $end = Tags::HTML::Page::End->new(
@@ -159,21 +186,28 @@ Returns undef.
  );
 
  # Error structure.
- my $error_messages_ar = [
-         'Error #1',
-         'Error #2',
- ];
- my $ok_messages_ar = [
-         'Ok #1',
-         'Ok #2',
+ my $message_ar = [
+         Data::Message::Simple->new(
+                 'text' => 'Error #1',
+                 'type' => 'error',
+         ),
+         Data::Message::Simple->new(
+                 'text' => 'Error #2',
+                 'type' => 'error',
+         ),
+         Data::Message::Simple->new(
+                 'text' => 'Ok #1',
+         ),
+         Data::Message::Simple->new(
+                 'text' => 'Ok #2',
+         ),
  ];
 
  # Process page.
  $messages->process_css('error', 'red');
- $messages->process_css('ok', 'green');
+ $messages->process_css('info', 'green');
  $begin->process;
- $messages->process($error_messages_ar, 'error');
- $messages->process($ok_messages_ar, 'ok');
+ $messages->process($message_ar);
  $end->process;
 
  # Print out.
@@ -184,14 +218,15 @@ Returns undef.
  # <html>
  #   <head>
  #     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ #     <meta name="generator" content="Tags::HTML::Messages" />
  #     <title>
- #       Page title
+ #       Tags::HTML::Messages example
  #     </title>
  #     <style type="text/css">
  # .error {
  # 	color: red;
  # }
- # .ok {
+ # .info {
  # 	color: green;
  # }
  # </style>
@@ -203,10 +238,10 @@ Returns undef.
  #     <span class="error">
  #       Error #2
  #     </span>
- #     <span class="ok">
+ #     <span class="info">
  #       Ok #1
  #     </span>
- #     <span class="ok">
+ #     <span class="info">
  #       Ok #2
  #     </span>
  #   </body>
@@ -216,6 +251,7 @@ Returns undef.
 
 L<Class::Utils>,
 L<Error::Pure>,
+L<Scalar::Util>,
 L<Tags::HTML>.
 
 =head1 REPOSITORY

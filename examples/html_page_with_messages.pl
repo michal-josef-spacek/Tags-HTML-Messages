@@ -4,6 +4,7 @@ use strict;
 use warnings;
 
 use CSS::Struct::Output::Indent;
+use Data::Message::Simple;
 use Tags::HTML::Page::Begin;
 use Tags::HTML::Page::End;
 use Tags::HTML::Messages;
@@ -17,6 +18,10 @@ my $tags = Tags::Output::Indent->new(
 my $css = CSS::Struct::Output::Indent->new;
 my $begin = Tags::HTML::Page::Begin->new(
         'css' => $css,
+        'lang' => {
+                'title' => 'Tags::HTML::Messages example',
+        },
+        'generator' => 'Tags::HTML::Messages',
         'tags' => $tags,
 );
 my $end = Tags::HTML::Page::End->new(
@@ -28,21 +33,28 @@ my $messages = Tags::HTML::Messages->new(
 );
 
 # Error structure.
-my $error_messages_ar = [
-        'Error #1',
-        'Error #2',
-];
-my $ok_messages_ar = [
-        'Ok #1',
-        'Ok #2',
+my $message_ar = [
+        Data::Message::Simple->new(
+                'text' => 'Error #1',
+                'type' => 'error',
+        ),
+        Data::Message::Simple->new(
+                'text' => 'Error #2',
+                'type' => 'error',
+        ),
+        Data::Message::Simple->new(
+                'text' => 'Ok #1',
+        ),
+        Data::Message::Simple->new(
+                'text' => 'Ok #2',
+        ),
 ];
 
 # Process page.
 $messages->process_css('error', 'red');
-$messages->process_css('ok', 'green');
+$messages->process_css('info', 'green');
 $begin->process;
-$messages->process($error_messages_ar, 'error');
-$messages->process($ok_messages_ar, 'ok');
+$messages->process($message_ar);
 $end->process;
 
 # Print out.
@@ -53,14 +65,15 @@ print $tags->flush;
 # <html>
 #   <head>
 #     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+#     <meta name="generator" content="Tags::HTML::Messages" />
 #     <title>
-#       Page title
+#       Tags::HTML::Messages example
 #     </title>
 #     <style type="text/css">
 # .error {
 # 	color: red;
 # }
-# .ok {
+# .info {
 # 	color: green;
 # }
 # </style>
@@ -72,10 +85,10 @@ print $tags->flush;
 #     <span class="error">
 #       Error #2
 #     </span>
-#     <span class="ok">
+#     <span class="info">
 #       Ok #1
 #     </span>
-#     <span class="ok">
+#     <span class="info">
 #       Ok #2
 #     </span>
 #   </body>

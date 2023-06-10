@@ -1,5 +1,6 @@
 0.03
  [API change]
+ - Rewrite to accept Data::Message::Simple objects only.
  - Rewrite to Tags::HTML helper. This is API change because 'tags' and
    'css' parameters could be undef now.
  [Common]
