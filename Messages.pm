@@ -58,8 +58,8 @@ sub _process {
 				['d', $message->text],
 				['e', 'span'],
 			);
+			$num++;
 		}
-		$num++;
 	}
 
 	return;
