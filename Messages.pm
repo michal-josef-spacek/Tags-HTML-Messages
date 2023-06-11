@@ -24,8 +24,11 @@ sub new {
 sub _check_messages {
 	my ($self, $message_ar) = @_;
 
+	if (ref $message_ar ne 'ARRAY') {
+		err "Bad list of messages.";
+	}
 	foreach my $message (@{$message_ar}) {
-		if (! blessed($message) && ! $message->isa('Data::Message::Simple')) {
+		if (! blessed($message) || ! $message->isa('Data::Message::Simple')) {
 
 			err 'Bad message data object.';
 		}
@@ -148,6 +151,10 @@ Returns undef.
                  Unknown parameter '%s'.
          Parameter 'css' must be a 'CSS::Struct::Output::*' class.
          Parameter 'tags' must be a 'Tags::Output::*' class.
+
+ process():
+         Bad list of messages.
+         Bad message data object.
 
 =head1 EXAMPLE1
 
