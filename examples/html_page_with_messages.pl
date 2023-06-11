@@ -62,34 +62,40 @@ print $tags->flush;
 
 # Output:
 # <!DOCTYPE html>
-# <html>
+# <html lang="en">
 #   <head>
 #     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 #     <meta name="generator" content="Tags::HTML::Messages" />
+#     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 #     <title>
 #       Tags::HTML::Messages example
 #     </title>
 #     <style type="text/css">
 # .error {
-# 	color: red;
+#         color: red;
 # }
 # .info {
-# 	color: green;
+#         color: green;
 # }
 # </style>
 #   </head>
 #   <body>
-#     <span class="error">
-#       Error #1
-#     </span>
-#     <span class="error">
-#       Error #2
-#     </span>
-#     <span class="info">
-#       Ok #1
-#     </span>
-#     <span class="info">
-#       Ok #2
-#     </span>
+#     <div class="messages">
+#       <span class="error">
+#         Error #1
+#       </span>
+#       <br />
+#       <span class="error">
+#         Error #2
+#       </span>
+#       <br />
+#       <span class="info">
+#         Ok #1
+#       </span>
+#       <br />
+#       <span class="info">
+#         Ok #2
+#       </span>
+#     </div>
 #   </body>
 # </html>

@@ -25,10 +25,13 @@ my $ret_ar = $tags->flush(1);
 is_deeply(
 	$ret_ar,
 	[
+		['b', 'div'],
+		['a', 'class', 'messages'],
 		['b', 'span'],
 		['a', 'class', 'info'],
 		['d', 'This is message.'],
 		['e', 'span'],
+		['e', 'div'],
 	],
 	'One message.',
 );
@@ -52,6 +55,8 @@ $ret_ar = $tags->flush(1);
 is_deeply(
 	$ret_ar,
 	[
+		['b', 'div'],
+		['a', 'class', 'messages'],
 		['b', 'span'],
 		['a', 'class', 'info'],
 		['d', 'This is message.'],
@@ -62,6 +67,7 @@ is_deeply(
 		['a', 'class', 'error'],
 		['d', 'Error message.'],
 		['e', 'span'],
+		['e', 'div'],
 	],
 	'Two message one info, second error.',
 );
@@ -76,7 +82,12 @@ $obj->process($message_ar);
 $ret_ar = $tags->flush(1);
 is_deeply(
 	$ret_ar,
-	[],
+	[
+		['b', 'div'],
+		['a', 'class', 'messages'],
+		['d', 'No messages'],
+		['e', 'div'],
+	],
 	'No messages.',
 );
 

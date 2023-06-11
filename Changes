@@ -4,6 +4,7 @@
  - Rewrite to Tags::HTML helper. This is API change because 'tags' and
    'css' parameters could be undef now.
  [Common]
+ - Add <div> for messages block.
  - Add check for reference of messages array.
  - Add tests.
  - Fix <br /> between messages.
