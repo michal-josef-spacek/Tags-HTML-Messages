@@ -5,6 +5,7 @@
    'css' parameters could be undef now.
  [Common]
  - Add check for reference of messages array.
+ - Add tests.
  - Fix <br /> between messages.
  - Fix/update MANIFEST file.
  - Fix message type, must be CSS class not id.
