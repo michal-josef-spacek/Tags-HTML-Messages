@@ -1,7 +1,10 @@
 TODO
 ====
 3. Add parameter for common texts (No messages).
-4.
+4. Rewrite _process_css to some different. Idea:
+   * Rewrite _process_css() to version which set in one call messages types and
+     main div.
+5.
 
 Applied
 =======
