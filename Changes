@@ -1,3 +1,5 @@
+0.05
+
 0.04 2023-06-12T10:58:01+02:00
  - Add 'css_messages' parameter.
  - Fix test dependencies.
