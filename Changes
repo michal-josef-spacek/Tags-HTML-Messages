@@ -1,5 +1,6 @@
 0.04
  - Fix test dependencies.
+ - Regen README file.
 
 0.03 2023-06-11T11:25:55+02:00
  [API change]
