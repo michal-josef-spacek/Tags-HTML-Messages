@@ -4,7 +4,7 @@ use base qw(Tags::HTML);
 use strict;
 use warnings;
 
-use Class::Utils qw(set_params);
+use Class::Utils qw(set_params split_params);
 use Error::Pure qw(err);
 use Scalar::Util qw(blessed);
 
@@ -15,7 +15,15 @@ sub new {
 	my ($class, @params) = @_;
 
 	# Create object.
-	my $self = $class->SUPER::new(@params);
+	my ($object_params_ar, $other_params_ar) = split_params(
+		['css_messages'], @params);
+	my $self = $class->SUPER::new(@{$other_params_ar});
+
+	# CSS class.
+	$self->{'css_messages'} = 'messages';
+
+	# Process params.
+	set_params($self, @{$object_params_ar});
 
 	# Object.
 	return $self;
@@ -46,7 +54,7 @@ sub _process {
 	my $num = 0;
 	$self->{'tags'}->put(
 		['b', 'div'],
-		['a', 'class', 'messages'],
+		['a', 'class', $self->{'css_messages'}],
 	);
 	if (@{$message_ar}) {
 		foreach my $message (@{$message_ar}) {
@@ -124,6 +132,12 @@ Constructor.
 'CSS::Struct::Output' object for L<process_css> processing.
 
 Default value is undef.
+
+=item * C<css_messages>
+
+CSS class for main messages div block.
+
+Default value is 'messages'.
 
 =item * C<tags>
 

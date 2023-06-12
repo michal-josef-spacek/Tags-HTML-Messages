@@ -7,7 +7,7 @@ use Error::Pure::Utils qw(clean);
 use Tags::HTML::Messages;
 use Tags::Output::Structure;
 use Test::MockObject;
-use Test::More 'tests' => 8;
+use Test::More 'tests' => 9;
 use Test::NoWarnings;
 
 # Test.
@@ -27,6 +27,33 @@ is_deeply(
 	[
 		['b', 'div'],
 		['a', 'class', 'messages'],
+		['b', 'span'],
+		['a', 'class', 'info'],
+		['d', 'This is message.'],
+		['e', 'span'],
+		['e', 'div'],
+	],
+	'One message.',
+);
+
+# Test.
+$tags = Tags::Output::Structure->new;
+$obj = Tags::HTML::Messages->new(
+	'css_messages' => 'foo',
+	'tags' => $tags,
+);
+$message_ar = [
+	Data::Message::Simple->new(
+		'text' => 'This is message.',
+	),
+];
+$obj->process($message_ar);
+$ret_ar = $tags->flush(1);
+is_deeply(
+	$ret_ar,
+	[
+		['b', 'div'],
+		['a', 'class', 'foo'],
 		['b', 'span'],
 		['a', 'class', 'info'],
 		['d', 'This is message.'],

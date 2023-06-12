@@ -20,6 +20,12 @@ METHODS
 
             Default value is undef.
 
+    *       "css_messages"
+
+            CSS class for main messages div block.
+
+            Default value is 'messages'.
+
     *       "tags"
 
             'Tags::Output' object.

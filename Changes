@@ -1,4 +1,5 @@
 0.04
+ - Add 'css_messages' parameter.
  - Fix test dependencies.
  - Regen README file.
 
