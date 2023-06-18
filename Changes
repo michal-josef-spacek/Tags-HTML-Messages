@@ -1,4 +1,6 @@
 0.05
+ [API change]
+ - process_css() method accept reference to hash with message type setting.
 
 0.04 2023-06-12T10:58:01+02:00
  - Add 'css_messages' parameter.

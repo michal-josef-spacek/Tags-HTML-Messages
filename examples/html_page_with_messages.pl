@@ -51,8 +51,10 @@ my $message_ar = [
 ];
 
 # Process page.
-$messages->process_css('error', 'red');
-$messages->process_css('info', 'green');
+$messages->process_css({
+        'error' => 'red',
+        'info' => 'green',
+});
 $begin->process;
 $messages->process($message_ar);
 $end->process;

@@ -5,7 +5,7 @@ use CSS::Struct::Output::Structure;
 use English;
 use Error::Pure::Utils qw(clean);
 use Tags::HTML::Messages;
-use Test::More 'tests' => 3;
+use Test::More 'tests' => 6;
 use Test::NoWarnings;
 
 # Test.
@@ -13,7 +13,7 @@ my $css = CSS::Struct::Output::Structure->new;
 my $obj = Tags::HTML::Messages->new(
 	'css' => $css,
 );
-$obj->process_css('error', 'red');
+$obj->process_css({'error' => 'red'});
 my $ret_ar = $css->flush(1);
 is_deeply(
 	$ret_ar,
@@ -23,6 +23,45 @@ is_deeply(
 		['e'],
 	],
 	'Add error type.',
+);
+
+# Test.
+$css = CSS::Struct::Output::Structure->new;
+$obj = Tags::HTML::Messages->new(
+	'css' => $css,
+);
+$obj->process_css({});
+$ret_ar = $css->flush(1);
+is_deeply(
+	$ret_ar,
+	[],
+	'Add error type (no types).',
+);
+
+# Test.
+$css = CSS::Struct::Output::Structure->new;
+$obj = Tags::HTML::Messages->new(
+	'css' => $css,
+);
+$obj->process_css();
+$ret_ar = $css->flush(1);
+is_deeply(
+	$ret_ar,
+	[],
+	'Add error type (undef types).',
+);
+
+# Test.
+$css = CSS::Struct::Output::Structure->new;
+$obj = Tags::HTML::Messages->new(
+	'css' => $css,
+);
+$obj->process_css('bad');
+$ret_ar = $css->flush(1);
+is_deeply(
+	$ret_ar,
+	[],
+	'Add error type (bad structure).',
 );
 
 # Test.

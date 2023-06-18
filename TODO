@@ -1,9 +1,6 @@
 TODO
 ====
 3. Add parameter for common texts (No messages).
-4. Rewrite _process_css to some different. Idea:
-   * Rewrite _process_css() to version which set in one call messages types and
-     main div.
 5.
 
 Applied
@@ -13,3 +10,8 @@ OK [20230611] skim
 
 2. Add parameter to CSS main style.
 OK [20230612] skim
+
+4. Rewrite _process_css to some different. Idea:
+   * Rewrite _process_css() to version which set in one call messages types and
+     main div.
+OK [20230618] skim

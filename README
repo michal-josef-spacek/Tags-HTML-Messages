@@ -43,12 +43,13 @@ METHODS
     Returns undef.
 
   "process_css"
-     $obj->process_css($type, $color);
+     $obj->process_css($message_types_hr);
 
     Process CSS::Struct structure for output.
 
-    Variable $type is string which define message type. Possible values are
-    info and error now. Types are defined in Data::Message::Simple.
+    Variable $message_type_hr is reference to hash with keys for message
+    type and value for color in CSS style. Possible message types are info
+    and error now. Types are defined in Data::Message::Simple.
 
     Returns undef.
 
@@ -115,8 +116,10 @@ EXAMPLE1
      ];
 
      # Process page.
-     $messages->process_css('error', 'red');
-     $messages->process_css('info', 'green');
+     $messages->process_css({
+             'error' => 'red',
+             'info' => 'green',
+     });
      $begin->process;
      $messages->process($message_ar);
      $end->process;

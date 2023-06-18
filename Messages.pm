@@ -86,13 +86,19 @@ sub _process {
 
 # Process 'CSS::Struct'.
 sub _process_css {
-	my ($self, $type, $color) = @_;
+	my ($self, $message_types_hr) = @_;
 
-	$self->{'css'}->put(
-		['s', '.'.$type],
-		['d', 'color', $color],
-		['e'],
-	);
+	if (! defined $message_types_hr || ref $message_types_hr ne 'HASH') {
+		return;
+	}
+
+	foreach my $message_type (keys %{$message_types_hr}) {
+		$self->{'css'}->put(
+			['s', '.'.$message_type],
+			['d', 'color', $message_types_hr->{$message_type}],
+			['e'],
+		);
+	}
 
 	return;
 }
@@ -160,12 +166,12 @@ Returns undef.
 
 =head2 C<process_css>
 
- $obj->process_css($type, $color);
+ $obj->process_css($message_types_hr);
 
 Process CSS::Struct structure for output.
 
-Variable C<$type> is string which define message type. Possible values are info
-and error now. Types are defined in L<Data::Message::Simple>.
+Variable C<$message_type_hr> is reference to hash with keys for message type and value for color in CSS style.
+Possible message types are info and error now. Types are defined in L<Data::Message::Simple>.
 
 Returns undef.
 
@@ -236,8 +242,10 @@ Returns undef.
  ];
 
  # Process page.
- $messages->process_css('error', 'red');
- $messages->process_css('info', 'green');
+ $messages->process_css({
+         'error' => 'red',
+         'info' => 'green',
+ });
  $begin->process;
  $messages->process($message_ar);
  $end->process;
