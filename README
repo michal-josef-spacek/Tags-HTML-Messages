@@ -26,6 +26,17 @@ METHODS
 
             Default value is 'messages'.
 
+    *       "flag_no_messages"
+
+            Flag for no messages printing.
+
+            Possible values:
+
+             0 - Print nothing
+             1 - Print message box with 'No messages.' text.
+
+            Default value is 1.
+
     *       "tags"
 
             'Tags::Output' object.

@@ -16,11 +16,14 @@ sub new {
 
 	# Create object.
 	my ($object_params_ar, $other_params_ar) = split_params(
-		['css_messages'], @params);
+		['css_messages', 'flag_no_messages'], @params);
 	my $self = $class->SUPER::new(@{$other_params_ar});
 
 	# CSS class.
 	$self->{'css_messages'} = 'messages';
+
+	# Flag for no messages.
+	$self->{'flag_no_messages'} = 1;
 
 	# Process params.
 	set_params($self, @{$object_params_ar});
@@ -50,6 +53,11 @@ sub _process {
 	my ($self, $message_ar) = @_;
 
 	$self->_check_messages($message_ar);
+
+	# No messages.
+	if (! $self->{'flag_no_messages'} && ! @{$message_ar}) {
+		return;
+	}
 
 	my $num = 0;
 	$self->{'tags'}->put(
@@ -144,6 +152,17 @@ Default value is undef.
 CSS class for main messages div block.
 
 Default value is 'messages'.
+
+=item * C<flag_no_messages>
+
+Flag for no messages printing.
+
+Possible values:
+
+ 0 - Print nothing
+ 1 - Print message box with 'No messages.' text.
+
+Default value is 1.
 
 =item * C<tags>
 
