@@ -75,6 +75,9 @@ sub _process {
 			$self->{'tags'}->put(
 				['b', 'span'],
 				['a', 'class', $message->type],
+				defined $message->lang
+					? (['a', 'lang', $message->lang])
+					: (),
 				['d', $message->text],
 				['e', 'span'],
 			);
@@ -253,6 +256,7 @@ Returns undef.
                  'type' => 'error',
          ),
          Data::Message::Simple->new(
+                 'lang' => 'en',
                  'text' => 'Ok #1',
          ),
          Data::Message::Simple->new(
@@ -301,7 +305,7 @@ Returns undef.
  #         Error #2
  #       </span>
  #       <br />
- #       <span class="info">
+ #       <span class="info" lang="en">
  #         Ok #1
  #       </span>
  #       <br />

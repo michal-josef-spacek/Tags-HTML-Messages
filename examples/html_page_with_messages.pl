@@ -43,6 +43,7 @@ my $message_ar = [
                 'type' => 'error',
         ),
         Data::Message::Simple->new(
+                'lang' => 'en',
                 'text' => 'Ok #1',
         ),
         Data::Message::Simple->new(
@@ -91,7 +92,7 @@ print $tags->flush;
 #         Error #2
 #       </span>
 #       <br />
-#       <span class="info">
+#       <span class="info" lang="en">
 #         Ok #1
 #       </span>
 #       <br />
