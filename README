@@ -75,6 +75,9 @@ ERRORS
              Bad list of messages.
              Bad message data object.
 
+     process_css():
+             Message types must be a hash reference.
+
 EXAMPLE1
      use strict;
      use warnings;

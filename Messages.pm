@@ -103,8 +103,11 @@ sub _process {
 sub _process_css {
 	my ($self, $message_types_hr) = @_;
 
-	if (! defined $message_types_hr || ref $message_types_hr ne 'HASH') {
+	if (! defined $message_types_hr) {
 		return;
+	}
+	if (ref $message_types_hr ne 'HASH') {
+		err 'Message types must be a hash reference.';
 	}
 
 	foreach my $message_type (keys %{$message_types_hr}) {
@@ -212,6 +215,9 @@ Returns undef.
  process():
          Bad list of messages.
          Bad message data object.
+
+ process_css():
+         Message types must be a hash reference.
 
 =head1 EXAMPLE1
 

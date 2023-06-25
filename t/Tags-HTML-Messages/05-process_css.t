@@ -56,13 +56,11 @@ $css = CSS::Struct::Output::Structure->new;
 $obj = Tags::HTML::Messages->new(
 	'css' => $css,
 );
-$obj->process_css('bad');
-$ret_ar = $css->flush(1);
-is_deeply(
-	$ret_ar,
-	[],
-	'Add error type (bad structure).',
-);
+eval {
+	$obj->process_css('bad');
+};
+is($EVAL_ERROR, "Message types must be a hash reference.\n",
+	"Message types must be a hash reference.");
 
 # Test.
 $css = CSS::Struct::Output::Structure->new;
