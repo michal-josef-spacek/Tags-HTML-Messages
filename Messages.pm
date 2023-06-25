@@ -8,7 +8,7 @@ use Class::Utils qw(set_params split_params);
 use Error::Pure qw(err);
 use Scalar::Util qw(blessed);
 
-our $VERSION = 0.09;
+our $VERSION = 0.10;
 
 # Constructor.
 sub new {
@@ -351,6 +351,6 @@ BSD 2-Clause License
 
 =head1 VERSION
 
-0.09
+0.10
 
 =cut
