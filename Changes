@@ -1,4 +1,5 @@
 0.08
+ - Don't return Tags code if messages reference is undefined.
  - Update README file.
 
 0.07 2023-06-25T09:59:44+02:00

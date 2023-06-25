@@ -52,6 +52,10 @@ sub _check_messages {
 sub _process {
 	my ($self, $message_ar) = @_;
 
+	if (! defined $message_ar) {
+		return;
+	}
+
 	$self->_check_messages($message_ar);
 
 	# No messages.

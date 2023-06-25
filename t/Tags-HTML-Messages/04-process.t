@@ -7,7 +7,7 @@ use Error::Pure::Utils qw(clean);
 use Tags::HTML::Messages;
 use Tags::Output::Structure;
 use Test::MockObject;
-use Test::More 'tests' => 12;
+use Test::More 'tests' => 13;
 use Test::NoWarnings;
 
 # Test.
@@ -187,6 +187,19 @@ is_deeply(
 	$ret_ar,
 	[],
 	'No messages (flag_no_messages = 0).',
+);
+
+# Test.
+$tags = Tags::Output::Structure->new;
+$obj = Tags::HTML::Messages->new(
+	'tags' => $tags,
+);
+$obj->process;
+$ret_ar = $tags->flush(1);
+is_deeply(
+	$ret_ar,
+	[],
+	'No messaes (messages array ref is undef).',
 );
 
 # Test.
