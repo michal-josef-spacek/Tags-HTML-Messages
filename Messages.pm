@@ -110,7 +110,7 @@ sub _process_css {
 		err 'Message types must be a hash reference.';
 	}
 
-	foreach my $message_type (keys %{$message_types_hr}) {
+	foreach my $message_type (sort keys %{$message_types_hr}) {
 		$self->{'css'}->put(
 			['s', '.'.$message_type],
 			['d', 'color', $message_types_hr->{$message_type}],

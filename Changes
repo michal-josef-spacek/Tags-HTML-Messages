@@ -1,4 +1,5 @@
 0.09
+ - Sort message types in CSS, we need this reproducible for tests.
 
 0.08 2023-06-25T10:54:03+02:00
  - Add error for bad message types definition in process_css().
