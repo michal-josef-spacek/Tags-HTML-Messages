@@ -1,6 +1,5 @@
 TODO
 ====
-3. Add parameter for common texts (No messages).
 5. Add check for bad structure in process_css().
 6. Add some nice CSS style for messages box.
 7.
@@ -17,3 +16,6 @@ OK [20230612] skim
    * Rewrite _process_css() to version which set in one call messages types and
      main div.
 OK [20230618] skim
+
+3. Add parameter for common texts (No messages).
+OK [20250715] skim

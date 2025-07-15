@@ -1,4 +1,8 @@
 0.10
+ [API change]
+ - Add 'lang' and 'text' parameters for translatable texts.
+
+ [Common]
  - Update copyright years.
 
 0.09 2023-06-25T19:36:50+02:00
