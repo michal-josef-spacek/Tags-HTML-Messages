@@ -1,4 +1,4 @@
-0.10
+0.10 2025-07-15T16:13:26+02:00
  [API change]
  - Add 'lang' and 'text' parameters for translatable texts.
 
